@@ -1,0 +1,56 @@
+{
+
+  "manifest_version": 2,
+
+  "name": "PAX Badge Checker",
+
+  "web_accessible_resources": [
+    "js/*",
+    "icons/*"
+  ],
+
+  "description": "Monitor the PAX Badges Twitter page, Pushbullet, and Google Voice for updates and automatically click on links.",
+  "version": "1.4",
+
+  "browser_action": {
+    "default_icon": "icons/192-pax.png",
+    "default_title": "PAX Badge Checker"
+  },
+
+  "permissions": [
+    "cookies",
+    "activeTab",
+    "storage",
+    "tabs",
+    "history",
+    "contextMenus",
+    "clipboardWrite",
+    "clipboardRead",
+    "http://*/*",
+    "https://*/*",
+    "*://*.google.com/*",
+    "notifications",
+    "alarms",
+    "file:///*"
+  ],
+
+  "icons": {
+    "192": "icons/192-pax.png"
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["*://*.twitter.com/*"],
+      "js": ["js/global.js", "js/arrive.js", "js/twitter.js"]
+    },
+    {
+      "matches": ["*://voice.google.com/*"],
+      "js": ["js/global.js", "js/arrive.js", "js/google-voice.js"]
+    },
+    {
+      "matches": ["*://*.pushbullet.com/*"],
+      "js": ["js/global.js", "js/arrive.js", "js/pushbullet.js"]
+    }
+  ]
+
+}
